@@ -1,9 +1,9 @@
-// Write a recursive function to calculate the factorial of a given number.
-// Write a recursive function to calculate the nth Fibonacci number.
-// Write a recursive function to find the sum of all elements in an array.
-// Write a recursive function to count the number of nodes in a binary tree.
-// Write a recursive function to reverse a linked list.
-// Write a recursive function to check if a string is a palindrome.
+// Write a recursive function to calculate the factorial of a given number. Ok
+// Write a recursive function to calculate the nth Fibonacci number. Ok
+// Write a recursive function to find the sum of all elements in an array. Ok
+// Write a recursive function to count the number of nodes in a binary tree. Ok
+// Write a recursive function to reverse a linked list. Ok
+// Write a recursive function to check if a string is a palindrome. Ok
 // Write a recursive function to find the greatest common divisor (GCD) of two numbers.
 // Write a recursive function to find the power of a number.
 // Write a recursive function to merge two sorted arrays into a single sorted array.
@@ -36,31 +36,81 @@ class Node {
 }
 
 class LinkedList {
-  #init;
+  constructor() {
+    this.length = 0;
+    this.head = null;
+  }
 
-  constructor(arr) {
-    this.head;
+  add(data) {
+    const node = new Node(data);
 
-    this.#init = () => {
-      const head = new Node(arr[0]);
+    if (!this.head) {
+      this.head = node;
+      this.length++;
+      return;
+    }
 
-      let cur = head;
+    let cur = this.head;
 
-      for (let i = 1; i < arr.length; i++) {
-        const temp = new Node(arr[i]);
+    while (cur.next) {
+      cur = cur.next;
+    }
 
-        cur.next = temp;
+    this.length++;
+    cur.next = node;
+  }
 
-        cur = cur.next;
+  reverse() {
+    const r = (q, p) => {
+      if (p) {
+        r(p, p.next);
+        p.next = q;
+      } else {
+        this.head = q;
       }
-
-      return head;
     };
 
-    this.head = this.#init();
+    r(null, this.head);
   }
+
+  display() {
+    let cur = this.head;
+
+    let list = "";
+
+    while (cur) {
+      if (!cur.next) {
+        list += cur.data;
+      } else {
+        list += cur.data + "->";
+      }
+
+      cur = cur.next;
+    }
+
+    console.log(list);
+  }
+  sdsda;
 }
 
-const list = new LinkedList([1, 2, 3, 4]);
+const list = new LinkedList();
+list.add(1);
+list.add(2);
+list.add(3);
+list.add(4);
+list.add(5);
+list.display();
+list.reverse();
+list.display();
 
-console.log(list);
+function isPalidron(string) {
+  const m = Math.ceil(string.length / 2);
+
+  const l = string.slice(0, m - 1);
+
+  const r = string.slice(m + 1, string.length);
+
+  return r === l;
+}
+
+console.log(isPalidron("natan"));
