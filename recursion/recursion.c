@@ -1,15 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Write a recursive function to calculate the factorial of a given number. Ok
-// Write a recursive function to calculate the nth Fibonacci number. Ok
-// Write a recursive function to find the sum of all elements in an array. Ok
-// Write a recursive function to reverse a linked list.
-// Write a recursive function to check if a string is a palindrome.
-// Write a recursive function to find the greatest common divisor (GCD) of two
-// numbers. Write a recursive function to find the power of a number. Write a
-// recursive function to merge two sorted arrays into a single sorted array.
-
 int factorial(int n) {
   if (n == 0)
     return 1;
@@ -114,14 +105,55 @@ void reverse(char str[], int l, int h) {
   }
 }
 
+void merge(int a[], int i, int b[], int j, int r[]) {
+
+  if (i != 0 || j != 0) {
+    if (i == 0) {
+      r[0] = b[0];
+      merge(a, i, b + 1, j - 1, r + 1);
+    } else if (j == 0) {
+      r[0] = a[0];
+      merge(a + 1, i - 1, b, j, r + 1);
+    } else if (a[0] < b[0]) {
+      r[0] = a[0];
+      merge(a + 1, i - 1, b, j, r + 1);
+    } else {
+      r[0] = b[0];
+      merge(a, i, b + 1, j - 1, r + 1);
+    }
+  }
+}
+
+int maxElement(int a[], int i) {
+
+  if (i == 1)
+    return a[i - 1];
+
+  int max = maxElement(a, i - 1);
+
+  if (max > a[i - 1])
+    return max;
+  else
+    return a[i - 1];
+}
+
 int main(void) {
   int arr[5] = {1, 2, 3, 4, 5};
+  int arr2[5] = {6, 7, 8, 9, 10};
+  int res[10];
 
-  head = LinkedList(arr, len(arr, 5));
-  struct Node *node = LinkedList(arr, len(arr, 5));
-  display(head);
-  reverseLinkedList(NULL, head);
-  display(head);
+  printf("%d", maxElement(arr2, 5));
+
+  // merge(arr, 5, arr2, 5, res);
+
+  // for (int i = 0; i < 10; i++) {
+  // printf("%d", res[i]);
+  // }
+  // head = LinkedList(arr, len(arr, 5));
+  // struct Node *node = LinkedList(arr, len(arr, 5));
+  // display(head);
+  // reverseLinkedList(NULL, head);
+  // display(head);
   // printf("fact: %d \n", factorial(3));
   // printf("fib: %d", fib(5));
   // printf("sum of nums %d", sum(arr, 5));

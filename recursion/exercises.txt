@@ -1,0 +1,28 @@
+// Write a recursive function to calculate the factorial of a given number. Ok
+// Write a recursive function to calculate the nth Fibonacci number. Ok
+// Write a recursive function to find the sum of all elements in an array. Ok
+// Write a recursive function to reverse a linked list.ok
+// Write a recursive function to check if a string is a palindrome.
+// recursive function to merge two sorted arrays into a single sorted array.
+
+
+
+Write a recursive function to find the maximum element in an array.
+
+Write a recursive function to search for an element in a sorted array.
+
+Write a recursive function to reverse an array.
+
+Write a recursive function to compute the sum of elements in an array.
+
+Write a recursive function to check if an array is sorted.
+
+Write a recursive function to count the number of occurrences of an element in an array.
+
+Write a recursive function to compute the product of elements in an array.
+
+Write a recursive function to find the kth smallest element in an array.
+
+Write a recursive function to remove duplicates from an array.
+
+Write a recursive function to rotate an array by a given number of positions.

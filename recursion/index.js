@@ -90,7 +90,6 @@ class LinkedList {
 
     console.log(list);
   }
-  sdsda;
 }
 
 const list = new LinkedList();
@@ -103,14 +102,9 @@ list.display();
 list.reverse();
 list.display();
 
-function isPalidron(string) {
-  const m = Math.ceil(string.length / 2);
 
-  const l = string.slice(0, m - 1);
+function merge(a1,a2, sizea1, sizea2) {
+  let arr3 = []
 
-  const r = string.slice(m + 1, string.length);
-
-  return r === l;
+  if()
 }
-
-console.log(isPalidron("natan"));
