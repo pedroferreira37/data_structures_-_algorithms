@@ -283,19 +283,153 @@ int* intsec(int A[], int n, int B[], int m) {
 
 }
 
+int* diff(int A[], int n, int B[], int m) {
+  int i = 0, j = 0, k = 0;
+  int* diff = (int *)malloc(sizeof(int) * (m + n));
+
+  while(i < n && j < 0) {
+    if(A[i] < B[j]) {
+      diff[k++] = A[i];
+    } else if(A[i]>B[j]) {
+      j++;
+    } else {
+      i++;
+      j++;
+    }
+  }
+
+
+    for(; i < n; i++) {
+    diff[k++] = A[i];
+  }
+
+
+  return diff;
+}
+
+
+
+// for sorted array
+int findMissin(int A[], int n) {
+  int sum = 0;
+  int diff = (A[n - 1] * (A[n - 1] + 1)) / 2;
+
+  for(int i = 0; i < n; i++) {
+    sum = sum + A[i];
+  }
+
+  return diff - sum;
+}
+
+
+int findMissinRec(int A[], int n) {
+  static int sum = 0;
+  int diff = A[n - 1] * A[n - 1] + 1 / 2;
+
+  if(n < 0) {
+
+    return diff - sum;
+  } 
+
+
+  findMissinRec(A, n - 1);
+}
+
+
+// for sorted array
+int find(int A[], int n) {
+  int diff = A[0];
+
+  for(int i = 0; i < n; i++) {
+    if(A[i] - i !=  diff) return diff + i;
+  }
+}
+
+
+int maxN(int A[], int n) {
+  int max = A[0];
+
+  for(int i; i < n; i++) {
+    if(A[i] > max) {
+      max = A[i];
+    } 
+  }
+
+
+  return max;
+}
+
+void fill(int A[], int n, int x) {
+  for(int i = 0; i < n; i++) {
+    A[i] = x;
+  }
+}
+
+int findHash(int A[], int n) {
+  int greater = maxN(A,n);
+  int cache[greater];
+  fill(cache, greater, 0);
+
+
+  for(int i = 0; i < n; i++) {
+    cache[A[i]]++;
+  }
+
+  for(int j = 1; j < greater; j++) {
+    if(cache[j] == 0) {
+      return j;
+    }
+  }
+  return -1;
+}
+
+
+  void swae(char S[], int n, int m) {
+  char temp = S[n];
+  S[n] = S[m];
+  S[m] = temp;
+}
+
+void perm(char S[], int l, int r) {
+
+  if(l == r) {
+      printf("%s\n", S);
+  } 
+
+   for(int i  = l; i <= r; i++) {
+      swae(S, l, i);
+      perm(S, l + 1, r);
+      swae(S, l, i);
+    }
+    
+}
 
 
 int main() {
   struct Array arr = {5, 20,{ 1, 2, 3, 4,5}};
-    int A[]  = { 1, 2, 3};
+    int A[]  = { 1, 2, 3, 5};
     int B[] = { 2, 5, 6};
+  int C[10];
+
+  char name[] = "abc";
+  perm(name, 0, 3);
+  // printf("%s", name);
+
+
+
+  // printf("%d",findMissin(A, 4));
+  // printf("%d",findMissinRec(A, 4));
+  // printf("%d", find(A, 4));
+
+  
     // int *C = merge(A, 3, B, 3);
-  int *D = un(A, 3, B, 3);
-  int *E = intsec(A, 3, B, 3);
+  // int *D = un(A, 3, B, 3);
+  // int *E = intsec(A, 3, B, 3);
+  // int *F = diff(A, 3, B, 3);
     // merge(A, 3, B, 3, C);
     // c_print(C, 6);
     
-  c_print(E, 1);
+  // c_print(F, 4);
   // push(&arr, 6);
   // insert(&arr, 2, 10);
   // insertTwo(&arr, 3, 11);

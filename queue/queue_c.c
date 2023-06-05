@@ -2,43 +2,41 @@
 #include <stdlib.h>
 
 struct Queue {
-int size;
-int front;
-int rear;
-int *Q;
+  int size;
+  int front;
+  int rear;
+  int *Q;
 };
-
 
 void create(struct Queue *q, int size) {
   q->size = size;
   q->front = q->rear = -1;
-  q->Q=(int *)malloc(q->size * sizeof(int));
+  q->Q = (int *)malloc(q->size * sizeof(int));
 }
 
 void enqueue(struct Queue *q, int x) {
-  if(q->rear==q->size-1) {
+  if (q->rear == q->size - 1) {
     printf("Queue is full");
   } else {
     q->rear++;
-    q->Q[q->rear]=x;
+    q->Q[q->rear] = x;
   }
 }
 int dequeue(struct Queue *q) {
   int x = -1;
-   if(q->rear==q->front) {
+  if (q->rear == q->front) {
     printf("Queue is empty");
   } else {
     q->front++;
-    x=q->Q[q->front];
+    x = q->Q[q->front];
   }
   return x;
 }
 
 void display(struct Queue q) {
-  for(int i=q.front+1; i<=q.rear; i++) {
+  for (int i = q.front + 1; i <= q.rear; i++) {
     printf("%d ", q.Q[i]);
   }
-
 }
 
 int main(int argc, char **argv) {
@@ -50,5 +48,5 @@ int main(int argc, char **argv) {
   display(q);
   dequeue(&q);
   display(q);
-	//printf("Hello world!\n");
+  // printf("Hello world!\n");
 }
