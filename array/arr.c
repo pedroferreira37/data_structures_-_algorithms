@@ -113,7 +113,7 @@ int get(struct Array* arr, int index) {
 }
 
 
-int set(struct Array* arr, int index, int x) {
+void set(struct Array* arr, int index, int x) {
   if(index >= 0 && index < arr->length) {
      arr->A[index] = x;
       arr->length++;
@@ -134,7 +134,7 @@ int max(struct Array arr) {
 }
 
 
-int swap(struct Array* arr, int head, int n) {
+void swap(struct Array* arr, int head, int n) {
   int temp =  arr->A[head];
   arr->A[head] = arr->A[n];
   arr->A[n] = temp;
@@ -229,14 +229,73 @@ void c_print(int A[], int n) {
 
 
 
+int* un (int A[], int n, int B[], int m) {
+  int i = 0, j = 0, k = 0;
+  int* C = (int *)malloc(sizeof(int) * (m + n));
+
+  while(i < n && j < m) {
+    if(A[i] < B[j]) {
+      C[k++] =  A[i++];
+    }else if(A[i] > B[j]) {
+      C[k++] = B[j++];
+    } else {
+      C[k++] = A[i++];
+      j++;
+    }
+   }
+
+
+  for(; i < n; i++) {
+    C[k++] = A[i];
+  }
+
+
+
+  for(; j < m; j++) {
+    C[k++] = B[j];
+  }
+
+
+  return C;
+
+}
+
+int* intsec(int A[], int n, int B[], int m) {
+
+ int i = 0, j = 0, k = 0;
+  int* C = (int *)malloc(sizeof(int) * (m + n));
+
+  while(i < n && j < m) {
+    if(A[i] < B[j]) {
+      i++;
+    }else if(A[i] > B[j]) {
+      j++;
+    } else {
+      C[k++] = A[i++];
+      j++;
+    }
+   }
+
+
+
+  return C;
+
+
+}
+
+
+
 int main() {
   struct Array arr = {5, 20,{ 1, 2, 3, 4,5}};
     int A[]  = { 1, 2, 3};
-    int B[] = { 4, 5, 6};
-    int *C = merge(A, 3, B, 3);
+    int B[] = { 2, 5, 6};
+    // int *C = merge(A, 3, B, 3);
+  int *D = un(A, 3, B, 3);
+  int *E = intsec(A, 3, B, 3);
     // merge(A, 3, B, 3, C);
-    c_print(C, 6);
+    // c_print(C, 6);
     
+  c_print(E, 1);
   // push(&arr, 6);
   // insert(&arr, 2, 10);
   // insertTwo(&arr, 3, 11);
