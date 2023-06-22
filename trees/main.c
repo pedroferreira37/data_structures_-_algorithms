@@ -11,7 +11,7 @@ void createTree() {
   struct Queue q;
 
   create(&q, 100);
-  printf("Enter root value");
+  printf("Enter root value ");
   scanf("%d", &x);
   root = (struct Node *)malloc(sizeof(struct Node));
   root->data = x;
@@ -21,22 +21,22 @@ void createTree() {
   while (!isEmpty(q)) {
     p = dequeue(&q);
 
-    printf("Enter left child of %d", p->data);
+    printf("Enter left child of %d ", p->data);
     scanf("%d", &x);
 
     if (x != -1) {
-      t = (Node *)malloc(sizeof(Node *));
+      t = (Node *)malloc(sizeof(Node));
       t->data = x;
       t->left = t->right = NULL;
       p->left = t;
       enqueue(&q, t);
     }
 
-    printf("Enter right child of %d", p->data);
+    printf("Enter right child of %d ", p->data);
     scanf("%d", &x);
 
     if (x != -1) {
-      t = (Node *)malloc(sizeof(Node *));
+      t = (Node *)malloc(sizeof(Node));
       t->data = x;
       t->left = t->right = NULL;
       p->right = t;
@@ -45,18 +45,36 @@ void createTree() {
   }
 }
 
-int preoder(struct Node *p) {
+void preoder(struct Node *p) {
 
   if (p) {
-    printf("%d", p->data);
+    printf("%d ", p->data);
     preoder(p->left);
     preoder(p->right);
   }
 }
 
+void postorder(struct Node *p) {
+  if(p) {
+    postorder(p->left);
+    postorder(p->right);
+    printf("%d", p->data);
+  }
+}
+
+
+void inorder(struct Node *p) {
+  if(p) {
+    postorder(p->left);
+    printf("%d", p->data);
+    postorder(p->right);
+  }
+}
+
 int main(int argc, char **argv) {
   createTree();
-  preoder(root);
-
+  // preoder(root);
+  // postorder(root);
+    postorder(root);
   return 0;
 }
