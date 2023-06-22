@@ -55,26 +55,64 @@ void preoder(struct Node *p) {
 }
 
 void postorder(struct Node *p) {
-  if(p) {
+  if (p) {
     postorder(p->left);
     postorder(p->right);
     printf("%d", p->data);
   }
 }
 
-
-void inorder(struct Node *p) {
-  if(p) {
+void inorder(Node *p) {
+  if (p) {
     postorder(p->left);
     printf("%d", p->data);
     postorder(p->right);
   }
+}
+
+void level_order(Node *root) {
+  struct Queue q;
+
+  create(&q, 100);
+
+  printf("%d", root->data);
+  enqueue(&q, root);
+
+  while (!isEmpty(q)) {
+    root = dequeue(&q);
+
+    if (root->left) {
+      printf("%d", root->left->data);
+      enqueue(&q, root->left);
+    }
+
+    if (root->right) {
+      printf("%d", root->right->data);
+      enqueue(&q, root->right);
+    }
+  }
+}
+
+int countNodes(Node *p) {
+  int x, y;
+
+  if (p) {
+    x = countNodes(p->left);
+    y = countNodes(p->right);
+
+    return x + y + 1;
+  }
+
+  return 0;
 }
 
 int main(int argc, char **argv) {
   createTree();
   // preoder(root);
   // postorder(root);
-    postorder(root);
+  // postorder(root);
+  // level_order(root);
+  printf("%d", countNodes(root));
+
   return 0;
 }
