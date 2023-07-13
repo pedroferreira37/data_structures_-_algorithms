@@ -65,9 +65,44 @@ Node *lr_rotation(Node *p) {
   return plr;
 }
 
-Node *rr_rotation(Node *p) { return NULL; }
+Node *rr_rotation(Node *p) {
+  Node *pl = p->right;
+  Node *plr = pl->left;
 
-Node *rl_rotation(Node *p) { return NULL; }
+  pl->left = p;
+  p->right = plr;
+
+  p->height = node_height(p);
+  pl->height = node_height(pl);
+
+  if (root == p) {
+    root = pl;
+  }
+
+  return plr;
+}
+
+// not working yet
+
+Node *rl_rotation(Node *p) {
+  Node *pl = p->right;
+  Node *plr = pl->left;
+
+  pl->left = plr->right;
+  p->right = plr->left;
+
+  p->right = pl;
+  plr->left = p;
+
+  p->height = node_height(p);
+  pl->height = node_height(pl);
+
+  if (root == p) {
+    root = pl;
+  }
+
+  return plr;
+}
 
 Node *RInsert(Node *p, int key) {
   Node *t;
@@ -110,10 +145,10 @@ void Preorder(Node *p) {
 }
 
 int main() {
-  root = RInsert(root, 50);
-  RInsert(root, 10);
-
+  root = RInsert(root, 10);
   RInsert(root, 20);
+
+  RInsert(root, 30);
 
   printf("%d", root->data);
   return 0;
